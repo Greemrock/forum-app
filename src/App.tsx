@@ -7,6 +7,7 @@ import { PostsList } from "./modules/PostsList";
 import { FavoritesList } from "./modules/FavoritesList";
 import { CreatePost } from "./modules/CreatePost";
 import { PostDetail } from "./modules/PostDetail";
+import { UserProfile } from "./modules/UserProfile";
 
 const theme = createTheme({
   palette: {
@@ -31,7 +32,7 @@ function App() {
           <Route path="/post/:postId" element={<PostDetail />} />
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/favorites" element={<FavoritesList />} />
-          <Route path="/profile" element={<>UserProfile</>} />
+          <Route path="/profile" element={<UserProfile />} />
         </Routes>
       </Router>
     </ThemeProvider>
