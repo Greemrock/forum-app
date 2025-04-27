@@ -13,11 +13,13 @@ interface PostCardProps {
 
 const PostCard: React.FC<PostCardProps> = memo(({ post, user, onDelete }) => {
   const {
+    isFavorite,
     post: currentPost,
     handleLike,
     handleDislike,
     handleDelete,
     handleViewDetails,
+    handleFavorite,
   } = usePostActions(post, onDelete);
 
   return (
@@ -48,6 +50,8 @@ const PostCard: React.FC<PostCardProps> = memo(({ post, user, onDelete }) => {
             post={post}
             onLike={handleLike}
             onDislike={handleDislike}
+            isFavorite={isFavorite}
+            onFavorite={handleFavorite}
           />
 
           {onDelete && (

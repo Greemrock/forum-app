@@ -5,6 +5,7 @@ export interface Post {
   body: string;
   likes: number;
   dislikes: number;
+  isFavorite: boolean;
 }
 
 export interface Comment {

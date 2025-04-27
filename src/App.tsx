@@ -4,6 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import Navbar from "./components/Navbar";
 import PostsList from "./components/PostsList";
+import FavoritesList from "./components/FavoritesList";
 
 const theme = createTheme({
   palette: {
@@ -27,7 +28,7 @@ function App() {
           <Route path="/" element={<PostsList />} />
           <Route path="/post/:postId" element={<>PostDetail</>} />
           <Route path="/create-post" element={<>CreatePost</>} />
-          <Route path="/favorites" element={<>FavoritesList</>} />
+          <Route path="/favorites" element={<FavoritesList />} />
           <Route path="/profile" element={<>UserProfile</>} />
         </Routes>
       </Router>
