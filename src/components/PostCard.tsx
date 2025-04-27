@@ -47,7 +47,7 @@ const PostCard: React.FC<PostCardProps> = memo(({ post, user, onDelete }) => {
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <PostActions
-            post={post}
+            post={currentPost}
             onLike={handleLike}
             onDislike={handleDislike}
             isFavorite={isFavorite}
