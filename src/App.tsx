@@ -10,6 +10,7 @@ import { CreatePost } from "./modules/CreatePost";
 import { PostDetail } from "./modules/PostDetail";
 import { UserProfile } from "./modules/UserProfile";
 import { AdminPosts } from "./modules/AdminPosts";
+import { AdminUsers } from "./modules/AdminUsers";
 
 const theme = createTheme({
   palette: {
@@ -37,7 +38,7 @@ function App() {
             <Route path="/favorites" element={<FavoritesList />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/admin/posts" element={<AdminPosts />} />
-            <Route path="/admin/users" element={<>AdminUsers</>} />
+            <Route path="/admin/users" element={<AdminUsers />} />
           </Routes>
         </Router>
       </AdminProvider>

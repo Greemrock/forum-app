@@ -39,4 +39,5 @@ export interface User {
     catchPhrase: string;
     bs: string;
   };
+  isAdmin?: boolean;
 }
