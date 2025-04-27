@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import Loader from "../../components/Loader";
 import { useGetPostsUsersQuery } from "../../hooks/useGetPostsUsersQuery";
-import PostsTable from "../../components/PostsTable";
+import { PostsTable } from "../../components/PostsTable";
 
 const PostsList: React.FC = () => {
   const navigate = useNavigate();

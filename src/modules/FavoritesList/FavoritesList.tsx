@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { Box, Typography, Button, Grid } from "@mui/material";
-import PostCard from "../../components/PostCard";
+import { Box, Typography, Button } from "@mui/material";
 import { Post } from "../../types";
 import Loader from "../../components/Loader";
 import { getFavorites } from "../../utils/favorites";
 import { useGetPostsUsersQuery } from "../../hooks/useGetPostsUsersQuery";
+import { PostsTable } from "../../components/PostsTable";
 
 const FavoritesList: React.FC = () => {
   const navigate = useNavigate();
   const [favoritePosts, setFavoritePosts] = useState<Post[]>([]);
-  const { posts, users, isLoading } = useGetPostsUsersQuery();
+  const { posts, users, isLoading, setPosts } = useGetPostsUsersQuery();
 
   useEffect(() => {
     setFavoritePosts(posts.filter((post) => getFavorites().includes(post.id)));
   }, [posts]);
+
+  const handleDelete = (postId: number) => {
+    setPosts(posts.filter((post) => post.id !== postId));
+    setFavoritePosts(favoritePosts.filter((post) => post.id !== postId));
+  };
 
   if (isLoading) {
     return <Loader fullScreen />;
@@ -35,16 +40,11 @@ const FavoritesList: React.FC = () => {
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom>
-        Favorite Posts
-      </Typography>
-      <Grid container spacing={3}>
-        {favoritePosts.map((post) => (
-          <Grid key={post.id} size={{ xs: 12, sm: 6, md: 4 }}>
-            <PostCard post={post} user={users[post.userId]} />
-          </Grid>
-        ))}
-      </Grid>
+      <Box sx={{ display: "flex", mb: 3 }}>
+        <Typography variant="h4">Favorite Posts</Typography>
+      </Box>
+
+      <PostsTable posts={favoritePosts} users={users} onDelete={handleDelete} />
     </Box>
   );
 };

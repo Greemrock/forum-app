@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 import type { Post, User } from "../../types";
-import PostActions from "../../components/PostActions";
+import PostActions from "../../components/PostsTable/PostActions";
 import { usePostActions } from "../../hooks/usePostActions";
 
 interface PostDetailCardProps {
