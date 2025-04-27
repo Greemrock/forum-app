@@ -6,6 +6,7 @@ export interface Post {
   likes: number;
   dislikes: number;
   isFavorite: boolean;
+  priority?: number;
 }
 
 export interface Comment {

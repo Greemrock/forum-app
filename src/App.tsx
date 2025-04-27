@@ -3,11 +3,13 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import Navbar from "./components/Navbar";
+import { AdminProvider } from "./context";
 import { PostsList } from "./modules/PostsList";
 import { FavoritesList } from "./modules/FavoritesList";
 import { CreatePost } from "./modules/CreatePost";
 import { PostDetail } from "./modules/PostDetail";
 import { UserProfile } from "./modules/UserProfile";
+import { AdminPosts } from "./modules/AdminPosts";
 
 const theme = createTheme({
   palette: {
@@ -25,16 +27,20 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<PostsList />} />
-          <Route path="/post/:postId" element={<PostDetail />} />
-          <Route path="/create-post" element={<CreatePost />} />
-          <Route path="/favorites" element={<FavoritesList />} />
-          <Route path="/profile" element={<UserProfile />} />
-        </Routes>
-      </Router>
+      <AdminProvider>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<PostsList />} />
+            <Route path="/post/:postId" element={<PostDetail />} />
+            <Route path="/create-post" element={<CreatePost />} />
+            <Route path="/favorites" element={<FavoritesList />} />
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/admin/posts" element={<AdminPosts />} />
+            <Route path="/admin/users" element={<>AdminUsers</>} />
+          </Routes>
+        </Router>
+      </AdminProvider>
     </ThemeProvider>
   );
 }

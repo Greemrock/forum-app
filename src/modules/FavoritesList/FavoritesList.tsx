@@ -6,6 +6,7 @@ import Loader from "../../components/Loader";
 import { getFavorites } from "../../utils/favorites";
 import { useGetPostsUsersQuery } from "../../hooks/useGetPostsUsersQuery";
 import { PostsTable } from "../../components/PostsTable";
+import { PostsLayout } from "../../components/PostsLayout";
 
 const FavoritesList: React.FC = () => {
   const navigate = useNavigate();
@@ -39,13 +40,16 @@ const FavoritesList: React.FC = () => {
   }
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Box sx={{ display: "flex", mb: 3 }}>
-        <Typography variant="h4">Favorite Posts</Typography>
-      </Box>
-
+    <PostsLayout
+      title="Favorite Posts"
+      headerActions={
+        <Button variant="outlined" onClick={() => navigate("/")}>
+          Back to All Posts
+        </Button>
+      }
+    >
       <PostsTable posts={favoritePosts} users={users} onDelete={handleDelete} />
-    </Box>
+    </PostsLayout>
   );
 };
 

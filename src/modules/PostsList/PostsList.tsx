@@ -2,16 +2,15 @@ import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import {
   Button,
-  Box,
   Select,
   MenuItem,
   FormControl,
   InputLabel,
-  Typography,
 } from "@mui/material";
 import Loader from "../../components/Loader";
 import { useGetPostsUsersQuery } from "../../hooks/useGetPostsUsersQuery";
 import { PostsTable } from "../../components/PostsTable";
+import { PostsLayout } from "../../components/PostsLayout";
 
 const PostsList: React.FC = () => {
   const navigate = useNavigate();
@@ -33,13 +32,14 @@ const PostsList: React.FC = () => {
   }
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
-        <Typography variant="h4">Posts</Typography>
+    <PostsLayout
+      title="Posts"
+      headerActions={
         <Button variant="contained" onClick={() => navigate("/create-post")}>
           Create New Post
         </Button>
-      </Box>
+      }
+    >
       <FormControl sx={{ mb: 3, minWidth: 200 }}>
         <InputLabel>Filter by User</InputLabel>
         <Select
@@ -57,7 +57,7 @@ const PostsList: React.FC = () => {
       </FormControl>
 
       <PostsTable posts={filteredPosts} users={users} onDelete={handleDelete} />
-    </Box>
+    </PostsLayout>
   );
 };
 
