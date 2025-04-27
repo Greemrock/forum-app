@@ -18,13 +18,10 @@ import { createPost, getUsers } from "../../services/api";
 const CreatePost: React.FC = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState<User[]>([]);
-  const [formData, setFormData] = useState<Omit<Post, "id">>({
+  const [formData, setFormData] = useState<Omit<Post, "id" | "isFavorite">>({
     userId: 1,
     title: "",
     body: "",
-    likes: 0,
-    dislikes: 0,
-    isFavorite: false,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {

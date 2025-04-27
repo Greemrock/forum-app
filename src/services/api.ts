@@ -48,7 +48,9 @@ export const getUserPosts = async (userId: number): Promise<Post[]> => {
   }));
 };
 
-export const createPost = async (post: Omit<Post, "id">): Promise<Post> => {
+export const createPost = async (
+  post: Omit<Post, "id" | "isFavorite">
+): Promise<Post> => {
   const response = await axios.post(`${API_URL}/posts`, post);
   return {
     ...response.data,

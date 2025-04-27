@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Stack, IconButton } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -8,6 +8,8 @@ import { Post } from "../../types";
 
 interface PostActionsProps {
   post: Post;
+  isLiked: boolean;
+  isDisliked: boolean;
   isFavorite: boolean;
   onLike: () => void;
   onDislike: () => void;
@@ -15,30 +17,39 @@ interface PostActionsProps {
 }
 
 const PostActions: React.FC<PostActionsProps> = ({
+  isLiked,
+  isDisliked,
   isFavorite,
-  post,
   onLike,
   onDislike,
   onFavorite,
 }) => {
   return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
-      <IconButton onClick={onLike}>
+    <Stack direction="row" spacing={1} alignItems="center">
+      <IconButton
+        onClick={onLike}
+        color={isLiked ? "primary" : "default"}
+        size="small"
+      >
         <ThumbUpIcon />
       </IconButton>
-      <Typography variant="caption" sx={{ mx: 1 }}>
-        {post.likes}
-      </Typography>
-      <IconButton onClick={onDislike}>
+
+      <IconButton
+        onClick={onDislike}
+        color={isDisliked ? "error" : "default"}
+        size="small"
+      >
         <ThumbDownIcon />
       </IconButton>
-      <Typography variant="caption" sx={{ mx: 1 }}>
-        {post.dislikes}
-      </Typography>
-      <IconButton onClick={onFavorite}>
-        {isFavorite ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />}
+
+      <IconButton
+        onClick={onFavorite}
+        color={isFavorite ? "warning" : "default"}
+        size="small"
+      >
+        {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
       </IconButton>
-    </Box>
+    </Stack>
   );
 };
 

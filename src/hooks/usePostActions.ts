@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Post } from "../types";
 import { useNavigate } from "react-router";
 import { deletePost } from "../services/api";
-import { removeFromFavorites, addToFavorites } from "../utils/favorites";
+import {
+  removeFromFavorites,
+  addToFavorites,
+  getFavorites,
+} from "../utils/favorites";
+import {
+  addLike,
+  removeLike,
+  addDislike,
+  removeDislike,
+  getPostInteractions,
+} from "../utils/interactions";
 
 interface UsePostActionsReturn {
   isFavorite: boolean;
+  isLiked: boolean;
+  isDisliked: boolean;
   post: Post;
   handleLike: () => void;
   handleDislike: () => void;
@@ -15,29 +28,64 @@ interface UsePostActionsReturn {
 }
 
 export const usePostActions = (
-  initialPost: Post,
+  post: Post,
   onDelete?: (postId: number) => void
 ): UsePostActionsReturn => {
-  const [post, setPost] = useState<Post>(initialPost);
-  const [isFavorite, setIsFavorite] = useState(initialPost.isFavorite);
+  const [isFavorite, setIsFavorite] = useState(
+    getFavorites().includes(post.id)
+  );
+  const [interactions, setInteractions] = useState({
+    isLiked: false,
+    isDisliked: false,
+  });
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setInteractions(getPostInteractions(post.id));
+  }, [post.id]);
+
   const handleLike = () => {
-    setPost((prevPost) => ({
-      ...prevPost,
-      likes: prevPost.likes + 1,
-    }));
+    if (interactions.isLiked) {
+      removeLike(post.id);
+      setInteractions((prev) => ({
+        ...prev,
+        isLiked: false,
+        likesCount: 0,
+      }));
+    } else {
+      addLike(post.id);
+      setInteractions((prev) => ({
+        ...prev,
+        isLiked: true,
+        isDisliked: false,
+        likesCount: 1,
+        dislikesCount: 0,
+      }));
+    }
   };
 
   const handleDislike = () => {
-    setPost((prevPost) => ({
-      ...prevPost,
-      dislikes: prevPost.dislikes + 1,
-    }));
+    if (interactions.isDisliked) {
+      removeDislike(post.id);
+      setInteractions((prev) => ({
+        ...prev,
+        isDisliked: false,
+        dislikesCount: 0,
+      }));
+    } else {
+      addDislike(post.id);
+      setInteractions((prev) => ({
+        ...prev,
+        isDisliked: true,
+        isLiked: false,
+        dislikesCount: 1,
+        likesCount: 0,
+      }));
+    }
   };
 
   const handleFavorite = () => {
-    setIsFavorite((prevPost) => !prevPost);
+    setIsFavorite((prev) => !prev);
     if (isFavorite) {
       removeFromFavorites(post.id);
     } else {
@@ -63,6 +111,8 @@ export const usePostActions = (
 
   return {
     isFavorite,
+    isLiked: interactions.isLiked,
+    isDisliked: interactions.isDisliked,
     post,
     handleLike,
     handleDislike,

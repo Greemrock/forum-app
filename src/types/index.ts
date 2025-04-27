@@ -3,8 +3,6 @@ export interface Post {
   userId: number;
   title: string;
   body: string;
-  likes: number;
-  dislikes: number;
   isFavorite: boolean;
   priority?: number;
 }

@@ -18,6 +18,8 @@ const PostTableRow: React.FC<PostTableRowProps> = ({
 }) => {
   const {
     isFavorite,
+    isLiked,
+    isDisliked,
     post: currentPost,
     handleLike,
     handleDislike,
@@ -47,9 +49,11 @@ const PostTableRow: React.FC<PostTableRowProps> = ({
       <TableCell align="center">
         <PostActions
           post={currentPost}
+          isLiked={isLiked}
+          isDisliked={isDisliked}
+          isFavorite={isFavorite}
           onLike={handleLike}
           onDislike={handleDislike}
-          isFavorite={isFavorite}
           onFavorite={handleFavorite}
         />
       </TableCell>
