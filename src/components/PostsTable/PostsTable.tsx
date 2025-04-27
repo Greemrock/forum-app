@@ -8,7 +8,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { Post, User } from "../types";
+import { Post, User } from "../../types";
 import PostTableRow from "./PostTableRow";
 
 interface PostsTableProps {
@@ -25,7 +25,7 @@ const PostsTable: React.FC<PostsTableProps> = ({ posts, users, onDelete }) => {
           <TableRow>
             <TableCell>Title</TableCell>
             <TableCell>Author</TableCell>
-            <TableCell align="center">Actions</TableCell>
+            <TableCell>Actions</TableCell>
             <TableCell align="right">Delete</TableCell>
           </TableRow>
         </TableHead>

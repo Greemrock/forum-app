@@ -1,8 +1,8 @@
 import React from "react";
 import { TableRow, TableCell, Typography, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Post, User } from "../types";
-import { usePostActions } from "../hooks/usePostActions";
+import { Post, User } from "../../types";
+import { usePostActions } from "../../hooks/usePostActions";
 import PostActions from "./PostActions";
 
 interface PostTableRowProps {
