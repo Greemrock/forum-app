@@ -10,9 +10,9 @@ import {
   Typography,
   Grid,
 } from "@mui/material";
-import Loader from "./Loader";
-import PostCard from "./PostCard";
-import { useGetPostsUsersQuery } from "../hooks/useGetPostsUsersQuery";
+import Loader from "../../components/Loader";
+import PostCard from "../../components/PostCard";
+import { useGetPostsUsersQuery } from "../../hooks/useGetPostsUsersQuery";
 const PostsList: React.FC = () => {
   const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState<number | "">("");

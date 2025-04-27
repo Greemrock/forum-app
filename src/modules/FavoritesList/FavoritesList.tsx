@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Box, Typography, Button, Grid } from "@mui/material";
-import PostCard from "./PostCard";
-import { Post } from "../types";
-import Loader from "./Loader";
-import { getFavorites } from "../utils/favorites";
-import { useGetPostsUsersQuery } from "../hooks/useGetPostsUsersQuery";
+import PostCard from "../../components/PostCard";
+import { Post } from "../../types";
+import Loader from "../../components/Loader";
+import { getFavorites } from "../../utils/favorites";
+import { useGetPostsUsersQuery } from "../../hooks/useGetPostsUsersQuery";
 
 const FavoritesList: React.FC = () => {
   const navigate = useNavigate();

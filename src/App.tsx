@@ -3,9 +3,9 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import Navbar from "./components/Navbar";
-import PostsList from "./components/PostsList";
-import FavoritesList from "./components/FavoritesList";
-import CreatePost from "./components/CreatePost";
+import { PostsList } from "./modules/PostsList";
+import { FavoritesList } from "./modules/FavoritesList";
+import { CreatePost } from "./modules/CreatePost";
 import { PostDetail } from "./modules/PostDetail";
 
 const theme = createTheme({

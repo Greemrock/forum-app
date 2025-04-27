@@ -12,8 +12,8 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from "@mui/material";
-import { Post, User } from "../types";
-import { createPost, getUsers } from "../services/api";
+import { Post, User } from "../../types";
+import { createPost, getUsers } from "../../services/api";
 
 const CreatePost: React.FC = () => {
   const navigate = useNavigate();
