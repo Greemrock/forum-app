@@ -46,9 +46,14 @@ export const usePostActions = (
   };
 
   const handleDelete = async () => {
-    await deletePost(post.id);
-    if (onDelete) {
-      onDelete(post.id);
+    try {
+      await deletePost(post.id);
+      removeFromFavorites(post.id);
+      if (onDelete) {
+        onDelete(post.id);
+      }
+    } catch (error) {
+      console.error("Error deleting post:", error);
     }
   };
 

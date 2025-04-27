@@ -8,11 +8,11 @@ import {
   FormControl,
   InputLabel,
   Typography,
-  Grid,
 } from "@mui/material";
 import Loader from "../../components/Loader";
-import PostCard from "../../components/PostCard";
 import { useGetPostsUsersQuery } from "../../hooks/useGetPostsUsersQuery";
+import PostsTable from "../../components/PostsTable";
+
 const PostsList: React.FC = () => {
   const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState<number | "">("");
@@ -56,17 +56,7 @@ const PostsList: React.FC = () => {
         </Select>
       </FormControl>
 
-      <Grid container spacing={3}>
-        {filteredPosts.map((post) => (
-          <Grid key={post.id} size={{ xs: 12, sm: 6, md: 4 }}>
-            <PostCard
-              post={post}
-              user={users[post.userId]}
-              onDelete={handleDelete}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      <PostsTable posts={filteredPosts} users={users} onDelete={handleDelete} />
     </Box>
   );
 };
