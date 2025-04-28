@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/forum-app/static/js/main.f0a58685.js",
+    "static/js/453.ea73b000.chunk.js": "/forum-app/static/js/453.ea73b000.chunk.js",
+    "index.html": "/forum-app/index.html",
+    "main.f0a58685.js.map": "/forum-app/static/js/main.f0a58685.js.map",
+    "453.ea73b000.chunk.js.map": "/forum-app/static/js/453.ea73b000.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.f0a58685.js"
+  ]
+}
