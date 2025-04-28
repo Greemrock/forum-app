@@ -29,7 +29,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AdminProvider>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Navbar />
           <Routes>
             <Route path="/" element={<PostsList />} />
